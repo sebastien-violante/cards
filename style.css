@@ -113,7 +113,7 @@ button {
   display: block;
   height: 770px;
   width: 370px;
-  background-color: #52a0f5;
+  background: repeating-linear-gradient(45deg, white, white 0.2px, #52a0f5 5px, #52a0f5 20px);
   border: 3px solid #52a0f5;
   border-radius: 30px;
   margin: 1em;
@@ -131,8 +131,10 @@ button {
 }
 .back h1 {
   color: #fff;
-  padding-top: 5em;
-  padding-bottom: 1em;
+  background: #52a0f5;
+  padding: 0.5em;
+  margin-top: 5em;
+  margin-bottom: 1em;
 }
 .back h3, .back button, .back hr {
   display: none;
