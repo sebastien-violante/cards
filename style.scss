@@ -1,11 +1,6 @@
-section {
- width: 100%;
- width: 10%;
- border-radius: 50%;
- height: 100px;
- margin-left: auto;
- margin-right: auto;
- bottom: 0;
+body {
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 #space {
@@ -15,38 +10,39 @@ section {
 hr {
   width: 80%;
   margin-bottom: 2em;
+  background-color:#52a0f5;
+  height:2px;
 }
 
 li {
   margin: 1em auto;
 }
 
-#up, #down {
-  height: 100px;
-  width: 100%;
-  display: flex;
-  justify-content: center ;
+#up {
+  position: relative;
+  max-width: 1300px;
   margin: 0 auto;
+} 
+
+#down {
+  justify-content: end;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-#downarrows {
-  height: 80px;
-  width: 80px;
-  background-color: #52a0f5;
-  border-radius: 50px;
-  margin-left: 1em;
-  box-shadow: 0px 0px 8px 3px #9bcafe, 0px 0px 4px 1px #245099; box-shadow: 0px 0px 8px 3px #9bcafe, 0px 0px 4px 1px #245099; border: 3px solid #FFF;
-}
-
-#besoins, #promesses {
+#besoins, #promesses, #up {
   max-width: 1300px;
   margin: 0 auto;
   display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
   justify-content: center;
-	margin-top: 5em;
-	margin-bottom: 5em;
+	
+}
+
+.cardtitle {
+  height: 210px;
 }
 
 .blurb {
@@ -73,6 +69,9 @@ button {
   border-radius: 50px;
   color: #FFF;
   border: none;
+  position: absolute;
+  bottom: 1em;
+  right: 25%;
 }
 
 .front {
@@ -99,14 +98,9 @@ button {
   & li {
     text-align: left;
   }
-  & button {
-    position:absolute;
-    bottom: 2em;
-  }
 }
 
 .back {
-  animation: bounce 1s ease-in infinite;
   position: relative;
   display: block;
 	height: 770px;
@@ -150,77 +144,40 @@ img {
     visibility: visible;
 }
 
-
-/* down arrows */
-$base: 0.6rem;
-
-.container {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100px;
-  border: 1px solid black;
-}
- 
-.chevron {
-  margin: 0 auto;
-  width: $base * 4;
-  height: $base * 0.5;
-  opacity: 0;
-  transform: scale(0.3);
-  animation: move-chevron 1s ease-in-out infinite;
-}
- 
-.chevron:first-child {
-  animation: move-chevron 1s ease-out 1s infinite;
-}
- 
-.chevron:nth-child(2) {
-  animation: move-chevron 1s ease-out 1s infinite;
-}
- 
-.chevron:before,
-.chevron:after {
-content: '';
-position: absolute;
-top: 0;
-height: 100%;
-width: 50%;
-background: #fff;
-}
- 
-.chevron:before {
-left: 0;
-transform: skewY(30deg);
-}
- 
-.chevron:after {
-right: 0;
-width: 50%;
-transform: skewY(-30deg);
-}
- 
-@keyframes move-chevron {
-  25% {
-    opacity: 1;
+.uparrow,
+    .downarrow {
+        width: 40px;
+        height: 40px;
+        transition: .5s;
+        border-style: inset;
+        border-radius: 10%;
+        border-bottom: 15px solid #1b4a7d;
+        border-left: 15px solid #1b4a7d;
+        border-top: none;
+        border-right: none;
+        display: flex;
+        align-items: center;
+        background-color: RGBA(255,255,255,0);
+        box-shadow: 5px 5px 10px rgb(36, 7, 99);
+        position: fixed;
+        margin-top: 85vh;
+        box-shadow: -4px 4px 6px rgb(7, 7, 7);
+        left: 80%;
+        z-index: 10;
+        animation: bounce 1.5s ease infinite;
+        
     }
-  33.3% {
-    opacity: 1;
-    transform: translateY($base * 3.8);
-  }
-  66.6% {
-    opacity: 1;
-    transform: translateY($base * 5.2);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY($base * 8) scale(0.5);
-  }
+  
+.uparrow {
+  transform: rotate(135deg);
+}
+  
+.downarrow {
+  transform: rotate(-45deg);
 }
 
 @keyframes bounce{
-  from {top: 2px;}
-  50%  {top: 6px;}
-  to   {top: 2px;}
+  from {top: 20px;}
+  50%  {top: 0px;}
+  to   {top: 20px;}
 }

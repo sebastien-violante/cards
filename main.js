@@ -3,13 +3,15 @@ let needs = [];
 let number = 0;
 const promises = [11,12,13,14,15,21,22,23,24,32,33,34,35];
 const blurbs = document.getElementsByClassName('blurb');
-const downarrows = document.getElementById('down');
+let arr = document.getElementById('arrow');
+window.scrollY;
 
 /************************ FUNCTIONS ***************************/
 /* function forceToHidden : change the class to forbid element display */
 function forceToHidden(element) {
     document.getElementById(element).className = "hidden";
 }
+
 /* function forceToVisible : change the class to enable element display */
 function forceToVisible(element) {
     document.getElementById(element).classList = "visible"; 
@@ -25,20 +27,33 @@ function forceToBack(element) {
     document.getElementById(element).classList = "back"; 
 }
 
-/* function scrolldown : to move down from needs to promises */
-function scrolldown() {
-    document.querySelector('#promesses').scrollIntoView({
-        behavior: 'smooth'
-      });
+/* function classAlternate : to change the arrows's class according to the active div */
+function classAlternate() {
+    if(arr.classList == "downarrow") {
+        document.querySelector('#downpoint').scrollIntoView({
+        behavior: 'smooth'});
+        arr.classList = "uparrow";
+            } else {
+        document.querySelector('#uppoint').scrollIntoView({
+        behavior: 'smooth'});
+        arr.classList = "downarrow";
+    } 
 }
-
+/* function changeDirection : change the arrow according to scroll number */
+function changeDirection() {
+    if(window.scrollY > 400) {
+        arr.classList = "uparrow";
+    } else if(window.scrollY <= 400) {
+        arr.classList = "downarrow";
+    } 
+}
 /******************************* CODE *****************************/
 /* loading page : all the cards and down/up arrows are hidden because no needs yet */
 for (let number = 1; number <= 3; number++) {
     forceToHidden('P'+number);
 }
-    forceToHidden('downarrows');
-    forceToHidden('titledown');
+    forceToHidden('arrow');
+    console.log(arr);
 
 /* then examine every blurb to detect a clic on it and display the right front card and right li */
 for(let blurb of blurbs) {
@@ -55,14 +70,15 @@ for(let blurb of blurbs) {
         }; 
         
         if(needs.length == 0) {
-            forceToHidden('downarrows');
-            forceToHidden('titledown');
-            for (let number = 1; number <= 6; number++) {
+            forceToHidden('arrow');
+            console.log(document.getElementById('arrow').classList);
+            for (let number = 1; number <= 3; number++) {
                 forceToHidden('P'+number);
             }
         } else {
-            forceToVisible('downarrows');
-            forceToVisible('titledown');
+            /* forceToVisible('titledown'); */
+            document.getElementById('arrow').classList="downarrow";
+            console.log(document.getElementById('arrow').classList);
             forceToBack('P1');
             forceToBack('P2');
             forceToBack('P3');
@@ -107,10 +123,17 @@ for(let blurb of blurbs) {
                 forceToVisible('PR23');
                 forceToVisible('PR24');
             }
-            downarrows.addEventListener('click', (e) => {
-                scrolldown()});
+            arr.addEventListener('click', (e) => {
+                classAlternate();
+            });
+            window.addEventListener('scroll', (e) => {
+                changeDirection();
+            });
         }
-    });}
+    })
+}
+
+   
 
 
 
